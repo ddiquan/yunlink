@@ -84,8 +84,8 @@ void dump_results_for_correlation(const std::vector<yunlink::CommandResultView>&
         std::cerr << "  result correlation_id=" << result.envelope.correlation_id
                   << " message_id=" << result.envelope.message_id
                   << " phase=" << phase_name(result.payload.phase)
-                  << " code=" << result.payload.result_code
-                  << " detail=" << result.payload.detail << "\n";
+                  << " code=" << result.payload.result_code << " detail=" << result.payload.detail
+                  << "\n";
     }
     if (!found) {
         std::cerr << "  no command result observed for correlation_id=" << correlation_id << "\n";
@@ -106,8 +106,8 @@ void dump_recent_results(const std::vector<yunlink::CommandResultView>& results,
         std::cerr << "    [" << i << "] correlation_id=" << result.envelope.correlation_id
                   << " message_id=" << result.envelope.message_id
                   << " phase=" << phase_name(result.payload.phase)
-                  << " code=" << result.payload.result_code
-                  << " detail=" << result.payload.detail << "\n";
+                  << " code=" << result.payload.result_code << " detail=" << result.payload.detail
+                  << "\n";
     }
 }
 
@@ -119,11 +119,9 @@ void dump_authority_state(yunlink::Runtime& runtime, const yunlink::TargetSelect
     }
 
     const uint64_t now_ms = now_millis();
-    const uint64_t remaining_ms =
-        lease.expires_at_ms > now_ms ? lease.expires_at_ms - now_ms : 0;
+    const uint64_t remaining_ms = lease.expires_at_ms > now_ms ? lease.expires_at_ms - now_ms : 0;
     std::cerr << "  authority state: present session_id=" << lease.session_id
-              << " ttl_ms=" << lease.lease_ttl_ms
-              << " expires_at_ms=" << lease.expires_at_ms
+              << " ttl_ms=" << lease.lease_ttl_ms << " expires_at_ms=" << lease.expires_at_ms
               << " remaining_ms=" << remaining_ms << "\n";
 }
 
