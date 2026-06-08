@@ -169,7 +169,7 @@ int main() {
     if (session_id == 0 ||
         !wait_until([&]() { return air.session_server().has_active_session(session_id); }) ||
         ground.request_authority(
-            peer_id, session_id, target, yunlink::ControlSource::kGroundStation, 2000) !=
+            peer_id, session_id, target, yunlink::ControlSource::kGroundStation, 5000) !=
             yunlink::ErrorCode::kOk) {
         std::cerr << "session/authority setup failed\n";
         return 3;
